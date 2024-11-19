@@ -5,12 +5,13 @@
 }
 
 body {
+    display: flex;
+    margin: auto var(--small-size);
     font-family: 'Poppins', sans-serif;
     font-size: 16px;
-    width: 100vw;
-    height: 100vh;
+    width: 100dvw;
+    height: 100dvh;
     background-color: var(--clr-neutral-off-white);
-    padding: 5rem;
 }
 
 :root {
@@ -28,10 +29,10 @@ body {
     /* Typography */
 
     /* font size */
-    --fs-xx-large: 5rem;
-    --fs-x-large: 4rem;
-    --fs-large: 3rem;
-    --fs-input-field: 2rem;
+    --fs-xx-large: clamp(72px, 7vw, 92px);
+    --fs-x-large: clamp(16px, 5vw, 64px);
+    --fs-large: clamp(16px, 5vw, 48px);
+    --fs-input-field: clamp(16px, 5vw, 24px);
     --fs-regular: 1rem;
     --fs-small: 0.75rem;
     --fs-tiny: 0.5rem;
@@ -51,17 +52,18 @@ body {
     --big-size: 2.5rem;
     --large-size: 3rem;
     --x-large-size: 10rem;
+
 }
 
 .main-container {
     display: grid;
-    justify-content: center;
+    margin: auto;
     align-items: center;
     gap: var(--regular-size);
-    padding: var(--tiny-size) var(--large-size);
+    padding: var(--tiny-size) var(--large-size) var(--large-size) var(--large-size);
 
     background-color: var(--clr-neutral-white);
-    border-radius: var(--small-size) var(--small-size) var(--x-large-size) var(--small-size);
+    border-radius: var(--regular-size) var(--regular-size) var(--x-large-size) var(--regular-size);
 }
 
 form {
@@ -72,6 +74,7 @@ form {
     padding: var(--large-size) 0;
     margin-bottom: var(--small-size);
     border-bottom: 0.75px solid var(--clr-neutral-light-grey);
+    transition: all 700ms ease-in-out;
 }
 
 .form-containers {
@@ -87,8 +90,8 @@ label {
 }
 
 input {
+    min-width: 8rem;
     padding: var(--small-size);
-    width: 10rem;
     font-size: var(--fs-input-field);
     font-family: inherit;
     font-weight: var(--fw-semi-bold);
@@ -120,17 +123,25 @@ input[type=number] {
 .arrow-icon {
     position: absolute;
     bottom: -42px;
-    right: 0;
+    right: calc(50% - 49px);
     background-color: var(--clr-primary-purple);
     padding: 1rem;
     border: none;
     border-radius: 50%;
     transition: background-color 200ms ease-in-out;
     cursor: pointer;
+    transform: scale(0.9);
+    transition: right 750ms ease-in-out;
+
 }
 
 .arrow-icon:hover {
     background-color: var(--clr-neutral-off-black);
+}
+
+
+.calculator-container {
+    display: grid;
 }
 
 .calc-text {
@@ -143,4 +154,18 @@ input[type=number] {
 .calc-text span {
     color: var(--clr-primary-purple);
     letter-spacing: 1rem;
+}
+
+
+@media screen and (min-width: 36.875rem) {
+    .arrow-icon {
+        position: absolute;
+        bottom: -42px;
+        right: 0;
+        transform: scale(1);
+    }
+
+    form {
+        min-width: 600px;
+    }
 }
