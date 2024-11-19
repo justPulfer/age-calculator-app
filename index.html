@@ -1,37 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- displays site properly based on user's device -->
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Age calculator app</title>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="./assets/images/favicon-32x32.png"
+		/>
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
-</head>
-<body>
+		<link rel="stylesheet" href="style.css" />
 
-  Day
-  DD
+		<title>Frontend Mentor | Age calculator app</title>
+	</head>
+	<body>
+		<main class="main-container">
+			<form action="#">
+				<div class="form-containers day-container">
+					<label for="day">DAY</label>
+					<input
+						type="number"
+						name="day"
+						id="day"
+						min="1"
+						max="31"
+						placeholder="DD"
+					/>
+				</div>
+				<div class="form-containers month-container">
+					<label for="month">MONTH</label>
+					<input
+						type="number"
+						name="day"
+						id="month"
+						min="1"
+						max="12"
+						placeholder="MM"
+					/>
+				</div>
+				<div class="form-containers year-container">
+					<label for="year">YEAR</label>
+					<input
+						type="number"
+						name="day"
+						id="year"
+						min="1970"
+						max="2024"
+						placeholder="YYYY"
+					/>
+				</div>
+				<button type="submit" class="arrow-icon">
+					<img src="/assets/images/icon-arrow.svg" alt="arrow icon" />
+				</button>
+			</form>
 
-  Month
-  MM
-
-  Year
-  YYYY
-
-  -- years
-  -- months
-  -- days
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
-</body>
+			<div class="calculator-container">
+				<p class="calc-text years-text"><span>--</span>years</p>
+				<p class="calc-text months-text"><span>--</span>months</p>
+				<p class="calc-text years-text"><span>--</span>days</p>
+			</div>
+		</main>
+	</body>
 </html>
