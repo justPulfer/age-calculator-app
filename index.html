@@ -18,50 +18,60 @@
 	</head>
 	<body>
 		<main class="main-container">
-			<form action="#">
-				<div class="form-containers day-container">
-					<label for="day">DAY</label>
-					<input
-						type="number"
-						name="day"
-						id="day"
-						min="1"
-						max="31"
-						placeholder="DD"
-					/>
-				</div>
-				<div class="form-containers month-container">
-					<label for="month">MONTH</label>
-					<input
-						type="number"
-						name="day"
-						id="month"
-						min="1"
-						max="12"
-						placeholder="MM"
-					/>
-				</div>
-				<div class="form-containers year-container">
-					<label for="year">YEAR</label>
-					<input
-						type="number"
-						name="day"
-						id="year"
-						min="1970"
-						max="2024"
-						placeholder="YYYY"
-					/>
-				</div>
-				<button type="submit" class="arrow-icon">
-					<img src="/assets/images/icon-arrow.svg" alt="arrow icon" />
-				</button>
-			</form>
+			<section class="component-container">
+				<form action="#" id="age-form">
+					<div class="form-containers day-container">
+						<label for="day">DAY</label>
+						<input
+							type="number"
+							name="day"
+							id="day"
+							min="1"
+							max="31"
+							placeholder="DD"
+							class="day"
+						/>
+					</div>
+					<div class="form-containers month-container">
+						<label for="month">MONTH</label>
+						<input
+							type="number"
+							name="day"
+							id="month"
+							min="1"
+							max="12"
+							placeholder="MM"
+						/>
+					</div>
+					<div class="form-containers year-container">
+						<label for="year">YEAR</label>
+						<input
+							type="number"
+							name="day"
+							id="year"
+							min="1970"
+							max="2024"
+							placeholder="YYYY"
+						/>
+					</div>
+					<button type="submit" class="arrow-icon">
+						<img src="/assets/images/icon-arrow.svg" alt="arrow icon" />
+					</button>
+				</form>
 
-			<section class="calculator-container">
-				<p class="calc-text years-text"><span>--</span>years</p>
-				<p class="calc-text months-text"><span>--</span>months</p>
-				<p class="calc-text years-text"><span>--</span>days</p>
+				<section class="calculator-container">
+					<p class="calc-text">
+						<span class="years-text computed-value">- -</span> years
+					</p>
+					<p class="calc-text">
+						<span class="months-text computed-value">- -</span> months
+					</p>
+					<p class="calc-text">
+						<span class="days-text computed-value">- -</span> days
+					</p>
+				</section>
 			</section>
 		</main>
+		<script src="index.js"></script>
 	</body>
 </html>
