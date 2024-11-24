@@ -4,15 +4,6 @@
     box-sizing: border-box;
 }
 
-body {
-    display: flex;
-    font-family: 'Poppins', sans-serif;
-    font-size: 16px;
-    width: 100dvw;
-    height: 100dvh;
-    background-color: var(--clr-neutral-off-white);
-}
-
 :root {
     /* Primary */
     --clr-primary-purple: hsl(259, 100%, 65%);
@@ -28,10 +19,10 @@ body {
     /* Typography */
 
     /* font size */
-    --fs-xx-large: clamp(72px, 7vw, 92px);
+    --fs-xx-large: clamp(50px, 7vw, 86px);
     --fs-x-large: clamp(16px, 5vw, 64px);
     --fs-large: clamp(16px, 5vw, 48px);
-    --fs-input-field: clamp(16px, 5vw, 24px);
+    --fs-input-field: clamp(16px, 5vw, 32px);
     --fs-regular: 1rem;
     --fs-small: 0.75rem;
     --fs-tiny: 0.5rem;
@@ -50,53 +41,47 @@ body {
     --regular-size: 2rem;
     --big-size: 2.5rem;
     --large-size: 3rem;
-    --x-large-size: 10rem;
+    --x-large-size: 4rem;
+    --xx-large-size: 7rem;
+}
 
+body {
+    display: flex;
+    min-width: 100dvw;
+    min-height: 100dvh;
+    margin: auto;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    background-color: var(--clr-neutral-off-white);
 }
 
 .main-container {
-    display: flex;
-    padding: var(--big-size);
-}
-
-.component-container {
     display: grid;
-    margin: auto;
-    align-items: center;
-    gap: var(--regular-size);
-    padding: var(--tiny-size) var(--large-size) var(--large-size) var(--large-size);
-
+    gap: var(--big-size);
     background-color: var(--clr-neutral-white);
-    border-radius: var(--regular-size) var(--regular-size) var(--x-large-size) var(--regular-size);
-
+    padding: var(--big-size);
+    border-radius: var(--small-size) var(--small-size) var(--xx-large-size) var(--small-size);
 }
 
-form {
-    position: relative;
+.input-containers {
     display: flex;
-    align-items: center;
     gap: var(--regular-size);
-    padding: var(--large-size) 0;
-    margin-bottom: var(--small-size);
-    border-bottom: 0.75px solid var(--clr-neutral-light-grey);
-    transition: all 700ms ease-in-out;
+    align-items: flex-start;
 }
 
-.form-containers {
+.input-container {
     display: grid;
+    flex: 1;
+    gap: var(--tiny-size);
 }
 
-label {
-    color: var(--clr-neutral-smokey-grey);
-    font-size: var(--fs-small);
-    font-weight: var(--fw-semi-bold);
-    letter-spacing: 0.25rem;
-    margin-bottom: var(--tiny-size);
-}
+.input {
+    width: 100%;
+    display: flex;
+    padding: var(--small-size) 0 var(--small-size) var(--small-size);
+    caret-color: var(--clr-primary-purple);
 
-input {
-    min-width: 8rem;
-    padding: var(--small-size);
     font-size: var(--fs-input-field);
     font-family: inherit;
     font-weight: var(--fw-semi-bold);
@@ -105,6 +90,61 @@ input {
     border: solid var(--clr-neutral-light-grey);
     border-radius: var(--tiny-size);
     cursor: pointer;
+}
+
+.divider-Btn {
+    position: relative;
+    margin: var(--big-size) 0;
+}
+
+.divider {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: var(--clr-neutral-light-grey);
+    color: var(--clr-neutral-off-black);
+}
+
+.calculate-btn {
+    position: absolute;
+    top: -38px;
+    right: calc(50% - 46px);
+    background-color: var(--clr-primary-purple);
+    padding: 1rem;
+    border: none;
+    border-radius: 50%;
+    transition: background-color 200ms ease-in-out;
+    cursor: pointer;
+    transform: scale(0.75);
+    transition: right 750ms ease-in-out;
+}
+
+.arrow-icon:hover {
+    background-color: var(--clr-neutral-off-black);
+}
+
+.error-message {
+    display: flex;
+    font-size: var(--fs-small);
+    font-style: italic;
+    color: var(--clr-primary-light-red);
+    padding: var(--tiny-size) 0;
+}
+
+.error-clr {
+    color: var(--clr-primary-light-red);
+}
+
+.input-error-clr {
+    border: 1px solid var(--clr-primary-light-red);
+}
+
+label {
+    color: var(--clr-neutral-smokey-grey);
+    font-size: var(--fs-small);
+    font-weight: var(--fw-semi-bold);
+    letter-spacing: 0.25rem;
+    margin-bottom: var(--tiny-size);
 }
 
 input:focus {
@@ -125,29 +165,6 @@ input[type=number] {
     -moz-appearance: textfield;
 }
 
-.arrow-icon {
-    position: absolute;
-    bottom: -42px;
-    right: calc(50% - 49px);
-    background-color: var(--clr-primary-purple);
-    padding: 1rem;
-    border: none;
-    border-radius: 50%;
-    transition: background-color 200ms ease-in-out;
-    cursor: pointer;
-    transform: scale(0.9);
-    transition: right 750ms ease-in-out;
-
-}
-
-.arrow-icon:hover {
-    background-color: var(--clr-neutral-off-black);
-}
-
-
-.calculator-container {
-    display: grid;
-}
 
 .calc-text {
     font-size: var(--fs-xx-large);
@@ -161,20 +178,20 @@ input[type=number] {
 }
 
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 375px) {
     .main-container {
-        width: 100%;
+        margin: auto;
         justify-content: center;
     }
 
-    .arrow-icon {
+    .calculate-btn {
         position: absolute;
         bottom: -42px;
         right: 0;
         transform: scale(1);
     }
 
-    form {
-        min-width: 600px;
+    .input-containers {
+        max-width: 80%;
     }
 }

@@ -18,10 +18,10 @@
 	</head>
 	<body>
 		<main class="main-container">
-			<section class="component-container">
-				<form action="#" id="age-form">
-					<div class="form-containers day-container">
-						<label for="day">DAY</label>
+			<form action="#" id="age-form" class="form-container">
+				<div class="input-containers">
+					<div class="input-container day-container">
+						<label class="label day-label" for="day">DAY</label>
 						<input
 							type="number"
 							name="day"
@@ -29,47 +29,53 @@
 							min="1"
 							max="31"
 							placeholder="DD"
-							class="day"
+							class="input"
 						/>
+						<small id="dayErr" class="error-message"></small>
 					</div>
-					<div class="form-containers month-container">
-						<label for="month">MONTH</label>
+					<div class="input-container month-container">
+						<label class="label month-label" for="month">MONTH</label>
 						<input
 							type="number"
-							name="day"
+							name="month"
 							id="month"
 							min="1"
 							max="12"
 							placeholder="MM"
+							class="input"
 						/>
+						<small id="monthErr" class="error-message"></small>
 					</div>
-					<div class="form-containers year-container">
-						<label for="year">YEAR</label>
+					<div class="input-container year-container">
+						<label class="label year-label" for="year">YEAR</label>
 						<input
 							type="number"
-							name="day"
+							name="year"
 							id="year"
-							min="1970"
-							max="2024"
 							placeholder="YYYY"
+							class="input"
 						/>
+						<small id="yearErr" class="error-message"></small>
 					</div>
-					<button type="submit" class="arrow-icon">
+				</div>
+				<div class="divider-Btn">
+					<span class="divider"></span>
+					<button type="submit" class="calculate-btn">
 						<img src="/assets/images/icon-arrow.svg" alt="arrow icon" />
 					</button>
-				</form>
+				</div>
+			</form>
 
-				<section class="calculator-container">
-					<p class="calc-text">
-						<span class="years-text computed-value">- -</span> years
-					</p>
-					<p class="calc-text">
-						<span class="months-text computed-value">- -</span> months
-					</p>
-					<p class="calc-text">
-						<span class="days-text computed-value">- -</span> days
-					</p>
-				</section>
+			<section class="calculator-container">
+				<p class="calc-text">
+					<span class="year-result computed-value">- -</span> years
+				</p>
+				<p class="calc-text">
+					<span class="month-result computed-value">- -</span> month
+				</p>
+				<p class="calc-text">
+					<span class="day-result computed-value">- -</span> days
+				</p>
 			</section>
 		</main>
 		<script src="index.js"></script>

@@ -1,80 +1,139 @@
 "use strict";
 
-// Users should be able to:
-
-// - View an age in years, months, and days after submitting a valid date through the form
-// - Receive validation errors if:
-//   - Any field is empty when the form is submitted
-//   - The day number is not between 1-31
-//   - The month number is not between 1-12
-//   - The year is in the future
-//   - The date is invalid e.g. 31/04/1991 (there are 30 days in April)
-// - View the optimal layout for the interface depending on their device's screen size
-// - See hover and focus states for all interactive elements on the page
-// - **Bonus**: See the age numbers animate to their final number when the form is submitted
-
-// Selecting DOM elements
-// Input elements
-const dayInput = document.querySelector(".day");
+const dayInput = document.querySelector("#day");
 const monthInput = document.querySelector("#month");
 const yearInput = document.querySelector("#year");
-const form = document.querySelector("#age-form");
 
-// Output elements
-const years = document.querySelector(".years-text");
-const months = document.querySelector(".months-text");
-const days = document.querySelector(".days-text");
+const dayErr = document.querySelector("#dayErr");
+const monthErr = document.querySelector("#monthErr");
+const yearErr = document.querySelector("#yearErr");
 
-// submit btn
-const arrowBtn = document.querySelector(".arrow-icon");
+const dayLabel = document.querySelector(".dayLabel");
+const monthLabel = document.querySelector(".monthLabel");
+const yearLabel = document.querySelector(".yearLabel");
 
-//other elements
-const computedValue = document.querySelector(".computed-value");
+const yearResult = document.querySelector(".year-result");
+const monthResult = document.querySelector(".month-result");
+const dayResult = document.querySelector(".day-result");
 
-let numYears;
-let numMonths;
-let numDays;
+const calculateBtn = document.querySelector(".calculate-btn");
 
-const displayAge = function () {
-	years.textContent = numYears;
-	months.textContent = numMonths;
-	days.textContent = numDays;
-};
-
-const clearInputFields = function () {
-	// clear input fields
-	dayInput.value = "";
-	monthInput.value = "";
-	yearInput.value = "";
-};
-
-const ageCalculator = function (day, month, year) {
-	const birthday = new Date(
-		`${monthInput.value}/${dayInput.value}/${yearInput.value}`
-	);
-
+const ageCalculator = (day, month, year) => {
+	const birthday = new Date(`${month}/${day}/${year}`);
 	const now = new Date();
 
-	// difference in dates to result in timestamp
-	const ageTimestamp = now - birthday;
-	console.log(ageTimestamp);
-	// we put the timestamp into the new Date method
-	const ageInDateFormat = new Date(ageTimestamp);
-	console.log(ageInDateFormat);
+	let years = now.getFullYear() - birthday.getFullYear();
+	let months = now.getMonth() - birthday.getMonth();
+	let days = now.getDate() - birthday.getDate();
 
-	// we get the num of days, months and years
-	numYears = ageInDateFormat.getFullYear() - 1970;
-	numMonths = ageInDateFormat.getMonth();
-	numDays = ageInDateFormat.getDate() - 1;
+	// Adjust for negative months or days
+	if (days < 0) {
+		months--;
+		// Get days in previous month
+		const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+		days += prevMonth.getDate();
+	}
 
-	// display to the UI
-	displayAge(numYears, numMonths, numDays);
-	clearInputFields();
+	if (months < 0) {
+		years--;
+		months += 12;
+	}
+
+	return { years, months, days };
 };
 
-// event listeners
-arrowBtn.addEventListener("click", function (e) {
-	e.preventDefault();
+const resetError = (input, errSpan, label) => {
+	errSpan.textContent = "";
+	label.classList.remove("invalid-label");
+	label.classList.add("valid-label");
+	input.classList.remove("invalid");
+	input.classList.add("valid");
+};
 
-	ageCalculator(dayInput, monthInput, yearInput);
+const isValidDate = (day, month, year) => {
+	const date = new Date(year, month - 1, day);
+	return (
+		date.getDate() === Number(day) &&
+		date.getMonth() === Number(month) - 1 &&
+		date.getFullYear() === Number(year)
+	);
+};
+
+calculateBtn.addEventListener("click", () => {
+	// Validate date before calculating
+	if (!isValidDate(dayInput.value, monthInput.value, yearInput.value)) {
+		showError(dayInput, dayErr, dayLabel, "Invalid date");
+		return;
+	}
+
+	const { years, months, days } = ageCalculator(
+		dayInput.value,
+		monthInput.value,
+		yearInput.value
+	);
+
+	yearResult.textContent = years;
+	monthResult.textContent = months;
+	dayResult.textContent = days;
+});
+
+// Validate fields
+const isEmpty = (input) => {
+	return !input.value;
+};
+
+const showError = (input, errSpan, label, errMessage) => {
+	errSpan.textContent = errMessage;
+	label.classList.remove("valid-label");
+	label.classList.add("invalid-label");
+	input.classList.remove("valid");
+	input.classList.add("invalid");
+};
+
+const isValidDay = (input) => {
+	return !(
+		Number(input.value) < Number(input.min) ||
+		Number(input.value) > Number(input.max)
+	);
+};
+
+const isValidMonth = (input) => {
+	return !(
+		Number(input.value) < Number(input.min) ||
+		Number(input.value) > Number(input.max)
+	);
+};
+
+const isValidYear = (input) => {
+	return !(Number(input.value) > new Date().getFullYear());
+};
+
+dayInput.addEventListener("input", () => {
+	if (isEmpty(dayInput)) {
+		showError(dayInput, dayErr, dayLabel, "This field is required");
+	} else if (!isValidDay(dayInput)) {
+		showError(dayInput, dayErr, dayLabel, "Must be a valid day");
+	} else {
+		resetError(dayInput, dayErr, dayLabel);
+	}
+});
+
+monthInput.addEventListener("input", () => {
+	if (isEmpty(monthInput)) {
+		showError(monthInput, monthErr, monthLabel, "This field is required");
+	} else if (!isValidMonth(monthInput)) {
+		showError(monthInput, monthErr, monthLabel, "Must be a valid month");
+	} else {
+		resetError(monthInput, monthErr, monthLabel);
+	}
+});
+
+yearInput.addEventListener("input", () => {
+	if (isEmpty(yearInput)) {
+		showError(yearInput, yearErr, yearLabel, "This field is required");
+	} else if (!isValidYear(yearInput)) {
+		showError(yearInput, yearErr, yearLabel, "Must be in the past");
+	} else {
+		resetError(yearInput, yearErr, yearLabel);
+	}
 });
