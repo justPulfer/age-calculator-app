@@ -19,7 +19,7 @@
     /* Typography */
 
     /* font size */
-    --fs-xx-large: clamp(50px, 7vw, 86px);
+    --fs-xx-large: clamp(40px, 10vw, 100px);
     --fs-x-large: clamp(16px, 5vw, 64px);
     --fs-large: clamp(16px, 5vw, 48px);
     --fs-input-field: clamp(16px, 5vw, 32px);
@@ -32,126 +32,90 @@
 
     /* Font weight */
     --fw-regular: 400;
-    --fw-semi-bold: 700;
+    --fw-semi-bold: 600;
     --fw-bold: 800;
 
     /* general sizes */
     --tiny-size: 0.5rem;
-    --small-size: 0.75rem;
+    --small-size: 0.725rem;
     --regular-size: 2rem;
     --big-size: 2.5rem;
     --large-size: 3rem;
     --x-large-size: 4rem;
-    --xx-large-size: 7rem;
+    --xx-large-size: 9rem;
 }
 
 body {
-    display: flex;
-    min-width: 100dvw;
-    min-height: 100dvh;
-    margin: auto;
-    align-items: center;
     font-family: 'Poppins', sans-serif;
     font-size: 16px;
+    min-width: 100dvw;
+    min-height: 100dvh;
     background-color: var(--clr-neutral-off-white);
+    padding: var(--large-size) var(--small-size);
 }
 
 .main-container {
     display: grid;
-    gap: var(--big-size);
+    margin: auto;
     background-color: var(--clr-neutral-white);
-    padding: var(--big-size);
-    border-radius: var(--small-size) var(--small-size) var(--xx-large-size) var(--small-size);
+    padding: var(--large-size);
+    border-radius: 1.5rem 1.5rem var(--xx-large-size) 1.5rem;
+}
+
+.form-container {
+    display: grid;
+    gap: var(--large-size);
+    margin-bottom: var(--regular-size);
 }
 
 .input-containers {
     display: flex;
-    gap: var(--regular-size);
+    gap: var(--small-size);
     align-items: flex-start;
 }
 
 .input-container {
+    width: 100%;
     display: grid;
-    flex: 1;
     gap: var(--tiny-size);
+}
+
+.label {
+    font-size: var(--fs-small);
+    font-weight: var(--fw-semi-bold);
+    color: var(--clr-neutral-smokey-grey);
+    letter-spacing: 0.25rem;
 }
 
 .input {
     width: 100%;
-    display: flex;
     padding: var(--small-size) 0 var(--small-size) var(--small-size);
-    caret-color: var(--clr-primary-purple);
-
-    font-size: var(--fs-input-field);
-    font-family: inherit;
-    font-weight: var(--fw-semi-bold);
-
-    color: var(--clr-neutral-off-black);
-    border: solid var(--clr-neutral-light-grey);
+    border: 1px solid var(--clr-neutral-light-grey);
     border-radius: var(--tiny-size);
-    cursor: pointer;
-}
-
-.divider-Btn {
-    position: relative;
-    margin: var(--big-size) 0;
-}
-
-.divider {
-    display: block;
-    width: 100%;
-    height: 1px;
-    background-color: var(--clr-neutral-light-grey);
+    caret-color: var(--clr-primary-purple);
     color: var(--clr-neutral-off-black);
+    font-family: inherit;
+    font-size: var(--fs-input-field);
+    font-weight: var(--fw-bold);
 }
 
-.calculate-btn {
-    position: absolute;
-    top: -38px;
-    right: calc(50% - 46px);
-    background-color: var(--clr-primary-purple);
-    padding: 1rem;
-    border: none;
-    border-radius: 50%;
-    transition: background-color 200ms ease-in-out;
-    cursor: pointer;
-    transform: scale(0.75);
-    transition: right 750ms ease-in-out;
-}
-
-.arrow-icon:hover {
-    background-color: var(--clr-neutral-off-black);
+.input:focus {
+    outline: 1px solid var(--clr-primary-purple);
 }
 
 .error-message {
-    display: flex;
-    font-size: var(--fs-small);
-    font-style: italic;
-    color: var(--clr-primary-light-red);
-    padding: var(--tiny-size) 0;
-}
-
-.error-clr {
+    font-size: var(--fs-tiny);
     color: var(--clr-primary-light-red);
 }
 
-.input-error-clr {
-    border: 1px solid var(--clr-primary-light-red);
+.invalid-input {
+    border-color: var(--clr-primary-light-red);
 }
 
-label {
-    color: var(--clr-neutral-smokey-grey);
-    font-size: var(--fs-small);
-    font-weight: var(--fw-semi-bold);
-    letter-spacing: 0.25rem;
-    margin-bottom: var(--tiny-size);
+.invalid-label {
+    color: var(--clr-primary-light-red);
 }
 
-input:focus {
-    outline: solid var(--clr-primary-purple);
-}
-
-/* Remove default styling for input */
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -161,37 +125,84 @@ input::-webkit-inner-spin-button {
 
 /* Firefox */
 input[type=number] {
-    appearance: auto;
     -moz-appearance: textfield;
+    appearance: textfield;
 }
 
+.dividerAndBtn {
+    display: flex;
+    position: relative;
+    margin-bottom: var(--regular-size);
+}
+
+.divider {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: var(--clr-neutral-light-grey);
+}
+
+.calculate-btn {
+    position: absolute;
+    bottom: -55px;
+    left: calc(50% - 55.75px);
+    background-color: var(--clr-primary-purple);
+    border: none;
+    border-radius: 50%;
+    padding: var(--regular-size);
+    transform: scale(0.5);
+    transition: left 2s ease-in-out;
+}
+
+.calculate-btn:hover {
+    background-color: var(--clr-neutral-off-black);
+}
+
+.calculator-container {
+    line-height: 1.2;
+}
 
 .calc-text {
+    display: flex;
+    gap: var(--tiny-size);
+    flex-wrap: nowrap;
     font-size: var(--fs-xx-large);
     font-weight: var(--fw-bold);
     font-style: italic;
-    color: var(--clr-neutral-off-black);
 }
 
 .computed-value {
     color: var(--clr-primary-purple);
 }
 
-
-@media screen and (min-width: 375px) {
-    .main-container {
-        margin: auto;
-        justify-content: center;
+@media (min-width: 692px) {
+    body {
+        display: grid;
+        place-items: center;
     }
 
-    .calculate-btn {
-        position: absolute;
-        bottom: -42px;
-        right: 0;
-        transform: scale(1);
+    .main-container {
+        max-width: 75%;
+    }
+
+    .form-container {
+        gap: var(--large-size);
     }
 
     .input-containers {
-        max-width: 80%;
+        gap: var(--regular-size);
+        max-width: 85%;
+    }
+
+    .calculate-btn {
+        transform: scale(0.7);
+        left: calc(100% - 92.75px);
+        transition: left 2s ease-in-out;
+    }
+}
+
+@media (min-width: 692px) and (max-width: 798px) {
+    .input-containers {
+        max-width: 100%;
     }
 }
