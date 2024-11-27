@@ -181,10 +181,6 @@ input[type=number] {
         place-items: center;
     }
 
-    .main-container {
-        max-width: 75%;
-    }
-
     .form-container {
         gap: var(--large-size);
     }
