@@ -51,7 +51,7 @@ body {
     min-width: 100dvw;
     min-height: 100dvh;
     background-color: var(--clr-neutral-off-white);
-    padding: var(--large-size) var(--small-size);
+    padding: var(--xx-large-size) var(--small-size);
 }
 
 .main-container {
@@ -132,7 +132,6 @@ input[type=number] {
 .dividerAndBtn {
     display: flex;
     position: relative;
-    margin-bottom: var(--regular-size);
 }
 
 .divider {
