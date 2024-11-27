@@ -19,7 +19,7 @@
     /* Typography */
 
     /* font size */
-    --fs-xx-large: clamp(40px, 10vw, 100px);
+    --fs-xx-large: clamp(44px, 10vw, 100px);
     --fs-x-large: clamp(16px, 5vw, 64px);
     --fs-large: clamp(16px, 5vw, 48px);
     --fs-input-field: clamp(16px, 5vw, 32px);
@@ -42,7 +42,7 @@
     --big-size: 2.5rem;
     --large-size: 3rem;
     --x-large-size: 4rem;
-    --xx-large-size: 9rem;
+    --xx-large-size: 7.5rem;
 }
 
 body {
